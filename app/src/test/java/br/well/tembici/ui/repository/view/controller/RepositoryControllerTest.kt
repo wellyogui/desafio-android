@@ -26,10 +26,8 @@ class RepositoryControllerTest {
     @JvmField
     val rule = InstantTaskExecutorRule()
 
-    //region Helper Fields
     private val repositoryDataSourceMock = mock<RepoDataSource>()
     private val viewContractMock = mock<RepositoryViewContract>()
-    //endregion Helper Fields
 
     lateinit var SUT: RepositoryController
 
@@ -68,13 +66,4 @@ class RepositoryControllerTest {
         verify(viewContractMock).showMessageError(errorMessage)
         verify(viewContractMock).hideLoading()
     }
-
-
-    //region Helper Methods
-
-    //endregion Helper Methods
-
-    //region Helper Classes
-
-    //endregion Helper Classes
 }
