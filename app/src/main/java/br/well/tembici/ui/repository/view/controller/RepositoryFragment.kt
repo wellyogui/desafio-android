@@ -1,5 +1,6 @@
 package br.well.tembici.ui.repository.view.controller
 
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import br.well.tembici.common.AppProvider
 import br.well.tembici.common.ControllerFactory
@@ -12,7 +13,7 @@ import br.well.tembici.common.view.BaseFragment
 class RepositoryFragment :
     BaseFragment<RepositoryViewContract, RepositoryController, AppProvider, ControllerFactory>() {
     override val viewContract: RepositoryViewContract by lazy {
-        appProvider.viewFactory.provideRepositoryView()
+        appProvider.viewFactory.provideRepositoryView(view?.parent as ViewGroup?)
     }
     override val controller: RepositoryController by lazy {
         controllerFactory.provideRepositoryController()
