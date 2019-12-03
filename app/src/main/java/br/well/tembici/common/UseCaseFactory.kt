@@ -1,5 +1,9 @@
 package br.well.tembici.common
 
-class UseCaseFactory(schedulerProvider: Any) {
+import br.well.tembici.gitservice.api.DataSourceFactory
+import br.well.tembici.ui.repository.usecase.RepositoryUseCase
+
+class UseCaseFactory(private val schedulerProvider: BaseSchedulerProvider) {
+    fun provideRepositoryUseCase(): RepositoryUseCase = RepositoryUseCase(DataSourceFactory.provideRepositoryDataSource(), schedulerProvider)
 
 }

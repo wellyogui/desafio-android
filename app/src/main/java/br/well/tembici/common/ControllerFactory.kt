@@ -6,6 +6,5 @@ import br.well.tembici.ui.repository.view.controller.RepositoryController
 class ControllerFactory(private val useCaseFactory: UseCaseFactory,
                         private val appProvider: AppProvider,
                         private val lifecycleOwner: LifecycleOwner) {
-    fun provideRepositoryController(): RepositoryController = RepositoryController()
-
+    fun provideRepositoryController(): RepositoryController = RepositoryController(useCaseFactory.provideRepositoryUseCase(), lifecycleOwner.lifecycle)
 }

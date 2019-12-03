@@ -4,6 +4,10 @@ import br.well.tembici.common.view.BaseListener
 import br.well.tembici.common.view.ObservableViewContract
 
 interface RepositoryViewContract: ObservableViewContract<RepositoryViewContract.Listener> {
+    fun showLoading()
+    fun bindRepositories()
+    fun hideLoading()
+
     interface Listener: BaseListener {
 
     }
