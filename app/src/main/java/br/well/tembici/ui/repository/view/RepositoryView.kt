@@ -6,18 +6,43 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import br.well.tembici.R
 import br.well.tembici.common.view.ObservableView
+import br.well.tembici.gitservice.api.model.Repository
+import br.well.tembici.ui.repository.view.adapter.RepositoriesAdapter
+import br.well.tembici.ui.repository.view.adapter.model.RepositoryItemAdapter
 import br.well.tembici.ui.repository.view.controller.RepositoryViewContract
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_repository.view.*
 
 class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?): ObservableView<RepositoryViewContract.Listener>(inflater, parent, R.layout.fragment_repository),
-    RepositoryViewContract {
+    RepositoryViewContract, RepositoriesAdapter.Listener {
+
+    private val repositoryAdapter by lazy {
+        RepositoriesAdapter(listOf(), this)
+    }
     override fun showLoading() {
         rootView.loadingView.visibility = VISIBLE
     }
 
-    override fun bindRepositories() {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun bindRepositories(repositories: Repository) {
+        val repositoryItemAdapter =  arrayListOf<RepositoryItemAdapter>()
+
+        repositories.items.forEach {
+            val repository = RepositoryItemAdapter(
+                "",
+                it.owner.avatarUrl,
+                it.name,
+                it.description,
+                it.forks_count,
+                it.stargazers_count
+            )
+
+            repositoryItemAdapter.add(repository)
+        }
+
+        repositoryAdapter.add(repositoryItemAdapter)
+        rootView.repositoriesView.setHasFixedSize(true)
+        rootView.repositoriesView.adapter = repositoryAdapter
+        rootView.repositoriesView.visibility = VISIBLE
     }
 
     override fun hideLoading() {
@@ -26,6 +51,10 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?): ObservableVi
 
     override fun showMessageError(message: String) {
         Snackbar.make(rootView, message, Snackbar.LENGTH_LONG)
+    }
+
+    override fun onRepositoryClicked() {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }

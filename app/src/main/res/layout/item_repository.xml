@@ -51,17 +51,17 @@
         app:layout_constraintTop_toBottomOf="@+id/repositoryViewGroup">
 
         <ImageView
-            android:id="@+id/pullRequestImageView"
+            android:id="@+id/starImageView"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_pr_black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/pullRequestCountView"
+            app:layout_constraintEnd_toStartOf="@+id/starCountView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/pullRequestCountView"
+            android:id="@+id/starCountView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
@@ -70,7 +70,7 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/forkImageView"
-            app:layout_constraintStart_toEndOf="@+id/pullRequestImageView"
+            app:layout_constraintStart_toEndOf="@+id/starImageView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -80,7 +80,7 @@
             android:src="@drawable/ic_fork_black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/forkCountView"
-            app:layout_constraintStart_toEndOf="@+id/pullRequestCountView"
+            app:layout_constraintStart_toEndOf="@+id/starCountView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -135,22 +135,10 @@
             android:text="username"
             android:textColor="#0366d6"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/userNameView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userImageView" />
-
-        <TextView
-            android:id="@+id/userNameView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="nome e sobrenome"
-            android:textColor="#000"
-            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userNickNameView" />
+            app:layout_constraintTop_toBottomOf="@+id/userImageView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

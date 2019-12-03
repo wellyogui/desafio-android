@@ -30,7 +30,7 @@ class RepositoryController(private val repositoryUseCase: RepositoryUseCase, val
                     }
                 }
                 ResourceState.SUCCESS -> {
-                    viewContract.bindRepositories()
+                    viewContract.bindRepositories(it.data!!)
                 }
                 ResourceState.ERROR -> {
                     viewContract.showMessageError(it.message!!)
