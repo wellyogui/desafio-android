@@ -17,7 +17,9 @@ object RepoApi : RepoDataSource {
     }
 
     override fun repositories(page: Int): Single<Repository> {
-        return repoService.repositories(page).doOnError {
+        val language = "Java"
+        val sort = "stars"
+        return repoService.repositories(language, sort, page).doOnError {
             Timber.e(it, "repositories: ${it.message}")
         }
     }

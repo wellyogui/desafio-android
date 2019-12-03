@@ -65,7 +65,7 @@ data class Repo(
     val pulls_url: String,
     val pushed_at: String,
     val releases_url: String,
-    val score: Int,
+    val score: Double,
     val size: Int,
     val ssh_url: String,
     val stargazers_count: Int,

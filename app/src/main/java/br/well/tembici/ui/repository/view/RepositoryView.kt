@@ -17,7 +17,7 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?): ObservableVi
     RepositoryViewContract, RepositoriesAdapter.Listener {
 
     private val repositoryAdapter by lazy {
-        RepositoriesAdapter(listOf(), this)
+        RepositoriesAdapter(arrayListOf(), this)
     }
     override fun showLoading() {
         rootView.loadingView.visibility = VISIBLE
@@ -40,9 +40,11 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?): ObservableVi
         }
 
         repositoryAdapter.add(repositoryItemAdapter)
-        rootView.repositoriesView.setHasFixedSize(true)
-        rootView.repositoriesView.adapter = repositoryAdapter
-        rootView.repositoriesView.visibility = VISIBLE
+        with(rootView.repositoriesView) {
+            setHasFixedSize(true)
+            adapter = repositoryAdapter
+            visibility = VISIBLE
+        }
     }
 
     override fun hideLoading() {

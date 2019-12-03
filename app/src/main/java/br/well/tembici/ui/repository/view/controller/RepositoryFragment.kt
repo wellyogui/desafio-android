@@ -2,8 +2,8 @@ package br.well.tembici.ui.repository.view.controller
 
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import br.well.tembici.common.provider.AppProvider
 import br.well.tembici.common.factory.ControllerFactory
+import br.well.tembici.common.provider.AppProvider
 import br.well.tembici.common.provider.FragmentLayoutProvider
 import br.well.tembici.common.view.base.BaseFragment
 
@@ -20,7 +20,7 @@ class RepositoryFragment :
     }
     override val appProvider: AppProvider by lazy {
         AppProvider(
-            activity as AppCompatActivity,
+            (requireActivity() as AppCompatActivity),
             (requireActivity() as FragmentLayoutProvider).fragmentFrame()
         )
     }
@@ -32,4 +32,12 @@ class RepositoryFragment :
         )
     }
 
+    companion object {
+        fun newInstance() = RepositoryFragment()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        controller.onStop()
+    }
 }

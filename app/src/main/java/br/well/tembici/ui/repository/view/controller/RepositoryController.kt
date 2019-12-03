@@ -11,6 +11,11 @@ import br.well.tembici.ui.repository.usecase.RepositoryUseCase
 class RepositoryController(private val repositoryUseCase: RepositoryUseCase, val lifecycle: Lifecycle) :
     LiveController<RepositoryViewContract.Listener, RepositoryViewContract>(), RepositoryViewContract.Listener {
 
+    override fun onCreate(view: RepositoryViewContract) {
+        super.onCreate(view)
+        onStart()
+    }
+
     fun onStart() {
         viewContract.registerListener(this)
         repositoryUseCase.fetchRepositories()

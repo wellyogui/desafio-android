@@ -50,7 +50,7 @@ class RepositoryControllerTest {
         SUT.onStart()
         //Assert
         verify(viewContractMock).showLoading()
-        verify(viewContractMock).bindRepositories()
+        verify(viewContractMock).bindRepositories(mock())
         verify(viewContractMock).hideLoading()
     }
 

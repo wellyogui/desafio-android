@@ -3,17 +3,20 @@ package br.well.tembici.ui.repository.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
 import androidx.recyclerview.widget.RecyclerView
 import br.well.tembici.R
 import br.well.tembici.ui.repository.view.adapter.model.RepositoryItemAdapter
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_repository.view.*
-import java.util.Collections.addAll
 
 /**
  * Created by well_ on 03/12/2019 for tembici-challenge.
  */
-open class RepositoriesAdapter(private val items: List<RepositoryItemAdapter>, private val listener: Listener) :
+open class RepositoriesAdapter(
+    private val items: ArrayList<RepositoryItemAdapter>,
+    private val listener: Listener
+) :
     RecyclerView.Adapter<RepositoriesAdapter.ViewHolder>() {
 
     interface Listener {
@@ -26,8 +29,8 @@ open class RepositoriesAdapter(private val items: List<RepositoryItemAdapter>, p
         return ViewHolder(view)
     }
 
+    @CallSuper
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        super.bindViewHolder(holder, position)
         with(holder.itemView) {
             rootAdapterView.setOnClickListener {
                 listener.onRepositoryClicked()
@@ -37,20 +40,18 @@ open class RepositoriesAdapter(private val items: List<RepositoryItemAdapter>, p
         holder.bind(items[position])
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: RepositoryItemAdapter) = with(itemView) {
-            with(item) {
-                repositoryNameView.text = repository
-                repositoryDescriptionView.text = repositoryDescription
-                starCountView.text = starCount.toString()
-                forkCountView.text = forkCount.toString()
-                userNickNameView.text = userNickname
+            repositoryNameView.text = item.repository
+            repositoryDescriptionView.text = item.repositoryDescription
+            starCountView.text = item.starCount.toString()
+            forkCountView.text = item.forkCount.toString()
+            userNickNameView.text = item.userNickname
 
-                Glide.with(context)
-                    .load(userImage)
-                    .placeholder(R.drawable.octocat)
-                    .into(userImageView)
-            }
+            Glide.with(context)
+                .load(item.userImage)
+                .placeholder(R.drawable.octocat)
+                .into(userImageView)
         }
     }
 
