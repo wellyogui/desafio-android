@@ -28,7 +28,7 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?): ObservableVi
 
         repositories.items.forEach {
             val repository = RepositoryItemAdapter(
-                "",
+                it.owner.login,
                 it.owner.avatarUrl,
                 it.name,
                 it.description,
