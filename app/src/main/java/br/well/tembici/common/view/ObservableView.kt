@@ -3,10 +3,12 @@ package br.well.tembici.common.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import br.well.tembici.common.view.base.BaseListener
+import br.well.tembici.common.view.base.BaseView
 
 abstract class ObservableView<LISTENER_TYPE : BaseListener>(inflater: LayoutInflater,
-                                                            parent: ViewGroup?,
-                                                            @LayoutRes layoutId: Int)
+                                                                                                                parent: ViewGroup?,
+                                                                                                                @LayoutRes layoutId: Int)
     : BaseView(inflater, parent, layoutId), ObservableViewContract<LISTENER_TYPE> {
     val listeners = HashSet<LISTENER_TYPE>()
 

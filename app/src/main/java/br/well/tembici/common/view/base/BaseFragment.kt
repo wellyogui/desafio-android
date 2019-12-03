@@ -1,10 +1,11 @@
-package br.well.tembici.common.view
+package br.well.tembici.common.view.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import br.well.tembici.common.view.RootViewContract
 
 abstract class BaseFragment<VIEW_CONTRACT : RootViewContract, CONTROLLER : BaseController<VIEW_CONTRACT>,
         APP_PROVIDER : BaseAppProvider, CONTROLLER_FACTORY> : Fragment() {

@@ -1,6 +1,7 @@
-package br.well.tembici.common
+package br.well.tembici.common.factory
 
 import androidx.lifecycle.LifecycleOwner
+import br.well.tembici.common.provider.AppProvider
 import br.well.tembici.ui.repository.view.controller.RepositoryController
 
 class ControllerFactory(private val useCaseFactory: UseCaseFactory,

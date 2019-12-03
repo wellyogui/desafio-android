@@ -1,4 +1,4 @@
-package br.well.tembici.common.view
+package br.well.tembici.common.view.base
 
 import android.content.Context
 import android.view.LayoutInflater

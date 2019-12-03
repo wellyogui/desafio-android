@@ -1,5 +1,6 @@
-package br.well.tembici.common
+package br.well.tembici.common.factory
 
+import br.well.tembici.common.provider.BaseSchedulerProvider
 import br.well.tembici.gitservice.api.DataSourceFactory
 import br.well.tembici.ui.repository.usecase.RepositoryUseCase
 

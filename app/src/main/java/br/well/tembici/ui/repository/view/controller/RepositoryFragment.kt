@@ -2,10 +2,10 @@ package br.well.tembici.ui.repository.view.controller
 
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import br.well.tembici.common.AppProvider
-import br.well.tembici.common.ControllerFactory
-import br.well.tembici.common.FragmentLayoutProvider
-import br.well.tembici.common.view.BaseFragment
+import br.well.tembici.common.provider.AppProvider
+import br.well.tembici.common.factory.ControllerFactory
+import br.well.tembici.common.provider.FragmentLayoutProvider
+import br.well.tembici.common.view.base.BaseFragment
 
 /**
  * Created by well_ on 03/12/2019 for tembici-challenge.
@@ -25,7 +25,11 @@ class RepositoryFragment :
         )
     }
     override val controllerFactory: ControllerFactory by lazy {
-        ControllerFactory(appProvider.useCaseFactory, appProvider, this)
+        ControllerFactory(
+            appProvider.useCaseFactory,
+            appProvider,
+            this
+        )
     }
 
 }

@@ -1,10 +1,12 @@
-package br.well.tembici.common
+package br.well.tembici.common.provider
 
+import br.well.tembici.common.provider.BaseSchedulerProvider
 import rx.Scheduler
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
-object SchedulerProvider : BaseSchedulerProvider {
+object SchedulerProvider :
+    BaseSchedulerProvider {
 
     override fun computation(): Scheduler {
         return Schedulers.computation()

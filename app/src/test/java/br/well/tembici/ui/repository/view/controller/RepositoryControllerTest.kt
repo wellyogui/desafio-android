@@ -8,7 +8,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
-import br.well.tembici.common.ImmediateSchedulerProvider
+import br.well.tembici.common.provider.ImmediateSchedulerProvider
 import br.well.tembici.gitservice.api.repo.RepoDataSource
 import br.well.tembici.ui.repository.usecase.RepositoryUseCase
 import com.nhaarman.mockitokotlin2.mock
@@ -37,7 +37,9 @@ class RepositoryControllerTest {
     fun setup() {
         val lifecycleMock = LifecycleRegistry(Mockito.mock(LifecycleOwner::class.java))
         lifecycleMock.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
-        val useCase = RepositoryUseCase(repositoryDataSourceMock, ImmediateSchedulerProvider())
+        val useCase = RepositoryUseCase(repositoryDataSourceMock,
+            ImmediateSchedulerProvider()
+        )
         SUT = RepositoryController(useCase,lifecycleMock)
         SUT.onCreate(viewContractMock)
     }

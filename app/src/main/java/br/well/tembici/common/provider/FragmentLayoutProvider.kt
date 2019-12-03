@@ -1,4 +1,4 @@
-package br.well.tembici.common
+package br.well.tembici.common.provider
 
 interface FragmentLayoutProvider {
     fun fragmentFrame(): Int

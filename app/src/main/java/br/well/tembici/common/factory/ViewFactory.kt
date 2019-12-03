@@ -1,4 +1,4 @@
-package br.well.tembici.common
+package br.well.tembici.common.factory
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

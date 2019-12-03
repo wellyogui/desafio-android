@@ -1,7 +1,7 @@
 package br.well.tembici.ui.repository.usecase
 
 import androidx.lifecycle.MutableLiveData
-import br.well.tembici.common.BaseSchedulerProvider
+import br.well.tembici.common.provider.BaseSchedulerProvider
 import br.well.tembici.common.util.Resource
 import br.well.tembici.gitservice.api.model.Repository
 import br.well.tembici.gitservice.api.repo.RepoDataSource

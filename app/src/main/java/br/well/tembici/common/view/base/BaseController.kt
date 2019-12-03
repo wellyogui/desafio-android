@@ -1,6 +1,7 @@
-package br.well.tembici.common.view
+package br.well.tembici.common.view.base
 
 import androidx.annotation.CallSuper
+import br.well.tembici.common.view.RootViewContract
 
 abstract class BaseController<VIEW_CONTRACT : RootViewContract> {
     lateinit var viewContract: VIEW_CONTRACT

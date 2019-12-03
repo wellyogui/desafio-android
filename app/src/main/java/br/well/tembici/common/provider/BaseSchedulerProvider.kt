@@ -1,4 +1,4 @@
-package br.well.tembici.common
+package br.well.tembici.common.provider
 
 import rx.Scheduler
 
