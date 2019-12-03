@@ -1,8 +1,10 @@
 package br.well.tembici.gitservice.api.repo.remote
 
+import br.well.tembici.gitservice.api.model.PullRequest
 import br.well.tembici.gitservice.api.model.Repository
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 import rx.Single
 
 /**
@@ -10,6 +12,9 @@ import rx.Single
  */
 interface RepoService {
 
-    @GET("search/repositories?q=language:Java&sort=stars&page={page}")
-    fun searchRepositories(@Path("page") page: Int): Single<Repository>
+    @GET("repos/{owner}/{repo}/pulls")
+    fun pulls(@Path("owenr") owner: String, @Path("repo") repo: String): Single<PullRequest>
+
+    @GET("search/repositories?q=language:Java&sort=stars{page}")
+    fun repositories(@Query("page") page: Int): Single<Repository>
 }

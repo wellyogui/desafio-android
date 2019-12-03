@@ -1,6 +1,7 @@
 package br.well.tembici.gitservice.api.repo.remote
 
 import br.well.tembici.gitservice.api.GitApiModule
+import br.well.tembici.gitservice.api.model.PullRequest
 import br.well.tembici.gitservice.api.model.Repository
 import br.well.tembici.gitservice.api.repo.RepoDataSource
 import rx.Single
@@ -15,9 +16,15 @@ object RepoApi : RepoDataSource {
         GitApiModule.retrofit.create(RepoService::class.java)
     }
 
-    override fun searchRepositories(page: Int): Single<Repository> {
-        return repoService.searchRepositories(page).doOnError {
-            Timber.e(it, "searchRepository %s:", it.message)
+    override fun repositories(page: Int): Single<Repository> {
+        return repoService.repositories(page).doOnError {
+            Timber.e(it, "repositories: ${it.message}")
+        }
+    }
+
+    override fun pulls(owner: String, repo: String): Single<PullRequest> {
+        return repoService.pulls(owner, repo).doOnError {
+            Timber.e(it, "pulls: ${it.message}")
         }
     }
 

@@ -1,5 +1,6 @@
 package br.well.tembici.gitservice.api.repo
 
+import br.well.tembici.gitservice.api.model.PullRequest
 import br.well.tembici.gitservice.api.model.Repository
 import rx.Single
 import timber.log.Timber
@@ -25,9 +26,15 @@ class RepoRepository(private val repoDataSource: RepoDataSource) : RepoDataSourc
         }
     }
 
-    override fun searchRepositories(page: Int): Single<Repository> {
-        return repoDataSource.searchRepositories(page).doOnError {
-            Timber.e(it, "searchRepository %s:", it.message)
+    override fun repositories(page: Int): Single<Repository> {
+        return repoDataSource.repositories(page).doOnError {
+            Timber.e(it, "repositories: ${it.message}")
+        }
+    }
+
+    override fun pulls(owner: String, repo: String): Single<PullRequest> {
+        return repoDataSource.pulls(owner, repo).doOnError {
+            Timber.e(it, "pulls: ${it.message}")
         }
     }
 
