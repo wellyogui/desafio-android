@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':gitservice'
 rootProject.name='tembici-challenge'

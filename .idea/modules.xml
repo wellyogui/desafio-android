@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gitservice/gitservice.iml" filepath="$PROJECT_DIR$/gitservice/gitservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/tembici-challenge.iml" filepath="$PROJECT_DIR$/tembici-challenge.iml" />
     </modules>
   </component>
