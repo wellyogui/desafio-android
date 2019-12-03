@@ -9,14 +9,15 @@ import br.well.tembici.ui.repository.usecase.RepositoryUseCase
  * Created by well_ on 03/12/2019 for tembici-challenge.
  */
 class RepositoryController(private val repositoryUseCase: RepositoryUseCase, val lifecycle: Lifecycle) :
-    LiveController<RepositoryViewContract.Listener, RepositoryViewContract>() {
+    LiveController<RepositoryViewContract.Listener, RepositoryViewContract>(), RepositoryViewContract.Listener {
 
     fun onStart() {
+        viewContract.registerListener(this)
         repositoryUseCase.fetchRepositories()
     }
 
     override fun onStop() {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        viewContract.unregisterListener(this)
     }
 
     override fun observeLive() {
@@ -32,14 +33,14 @@ class RepositoryController(private val repositoryUseCase: RepositoryUseCase, val
                     viewContract.bindRepositories()
                 }
                 ResourceState.ERROR -> {
-
-                }// TODO()
+                    viewContract.showMessageError(it.message!!)
+                }
             }
         })
     }
 
     override fun initViews() {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        observeLive()
     }
 
 

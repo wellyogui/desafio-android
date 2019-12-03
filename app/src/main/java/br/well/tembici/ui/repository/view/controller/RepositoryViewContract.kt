@@ -7,6 +7,7 @@ interface RepositoryViewContract: ObservableViewContract<RepositoryViewContract.
     fun showLoading()
     fun bindRepositories()
     fun hideLoading()
+    fun showMessageError(message: String)
 
     interface Listener: BaseListener {
 

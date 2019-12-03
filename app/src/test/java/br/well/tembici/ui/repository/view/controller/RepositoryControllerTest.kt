@@ -12,6 +12,7 @@ import br.well.tembici.common.ImmediateSchedulerProvider
 import br.well.tembici.gitservice.api.repo.RepoDataSource
 import br.well.tembici.ui.repository.usecase.RepositoryUseCase
 import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -24,10 +25,6 @@ class RepositoryControllerTest {
     @Rule
     @JvmField
     val rule = InstantTaskExecutorRule()
-
-    //region Constants
-
-    //endregion Constants
 
     //region Helper Fields
     private val repositoryDataSourceMock = mock<RepoDataSource>()
@@ -46,16 +43,31 @@ class RepositoryControllerTest {
     }
 
     @Test
-    fun onStart_fetchRepositories_Success() {
+    fun onStart_fetchRepositories_success() {
         //Arrange
         `when`(repositoryDataSourceMock.repositories(1)).thenReturn(Single.just(mock()))
         //Act
         SUT.onStart()
         //Assert
-        (viewContractMock).showLoading()
-        (viewContractMock).bindRepositories()
-        (viewContractMock).hideLoading()
+        verify(viewContractMock).showLoading()
+        verify(viewContractMock).bindRepositories()
+        verify(viewContractMock).hideLoading()
     }
+
+    @Test
+    fun onStart_fetchRepositories_failure() {
+        //Arrange
+        val errorMessage = "Erro ao carregar a lista"
+        `when`(repositoryDataSourceMock.repositories(1)).thenReturn(Single.error(RuntimeException(errorMessage)))
+        //Act
+        SUT.onStart()
+        //Assert
+        verify(viewContractMock).showLoading()
+        verify(viewContractMock).showMessageError(errorMessage)
+        verify(viewContractMock).hideLoading()
+    }
+
+
     //region Helper Methods
 
     //endregion Helper Methods
