@@ -68,7 +68,6 @@ open class RepositoriesAdapter(
 
             Glide.with(context)
                 .load(item.userImage)
-                .placeholder(R.drawable.octocat)
                 .into(userImageView)
         }
     }

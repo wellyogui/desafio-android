@@ -14,7 +14,8 @@ import br.well.tembici.ui.repository.view.listener.PaginationScrolledListener
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_repository.view.*
 
-class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?): ObservableView<RepositoryViewContract.Listener>(inflater, parent, R.layout.fragment_repository),
+class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?) :
+    ObservableView<RepositoryViewContract.Listener>(inflater, parent, R.layout.fragment_repository),
     RepositoryViewContract, RepositoriesAdapter.Listener {
 
     var isLoading = false
@@ -23,12 +24,13 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?): ObservableVi
     private val repositoryAdapter by lazy {
         RepositoriesAdapter(arrayListOf(), this)
     }
+
     override fun showLoading() {
         rootView.loadingView.visibility = VISIBLE
     }
 
     override fun bindRepositories(repositories: Repository) {
-        val repositoryItemAdapter =  arrayListOf<RepositoryItemAdapter>()
+        val repositoryItemAdapter = arrayListOf<RepositoryItemAdapter>()
 
         repositories.items.forEach {
             val repository = RepositoryItemAdapter(
@@ -46,7 +48,9 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?): ObservableVi
         repositoryAdapter.addAll(repositoryItemAdapter)
         with(rootView.repositoriesView) {
             setHasFixedSize(true)
-            adapter = repositoryAdapter
+            if (adapter == null) {
+                adapter = repositoryAdapter
+            }
             visibility = VISIBLE
 
             addOnScrollListener(object : PaginationScrolledListener(layoutManager!!) {
@@ -86,6 +90,7 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?): ObservableVi
         isLoading = false
         repositoryAdapter.hideLoading()
     }
+
     override fun onRepositoryClicked() {
 //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

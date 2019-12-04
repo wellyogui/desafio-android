@@ -19,10 +19,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/RepositoryView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/RepositoryView.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/adapter/RepositoriesAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/adapter/RepositoriesAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_repository.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_repository.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_repository.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_repository.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_repository_progress.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_repository_progress.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,8 +52,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/controller/RepositoryController.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="60" selection-start-line="60" selection-end-line="60" />
+            <state relative-caret-position="619">
+              <caret line="61" column="29" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/controller/RepositoryViewContract.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -72,32 +82,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/RepositoryView.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="59" column="41" lean-forward="true" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
+            <state relative-caret-position="203">
+              <caret line="52" column="13" lean-forward="true" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_repository.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="4" column="31" lean-forward="true" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
-              <folding>
-                <element signature="e#330#5323#0" />
-                <element signature="e#5329#5857#0" />
-                <element signature="e#5863#7326#0" />
-              </folding>
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/adapter/RepositoriesAdapter.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="98" column="30" selection-start-line="98" selection-start-column="30" selection-end-line="98" selection-end-column="30" />
+            <state relative-caret-position="420">
+              <caret line="88" column="9" lean-forward="true" selection-start-line="88" selection-start-column="9" selection-end-line="88" selection-end-column="9" />
               <folding>
                 <element signature="e#52#423#0" expanded="true" />
               </folding>
@@ -118,8 +113,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/usecase/RepositoryUseCase.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="25" column="94" selection-start-line="25" selection-start-column="94" selection-end-line="25" selection-end-column="94" />
+            <state relative-caret-position="176">
+              <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -127,8 +122,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_repository.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="34" column="51" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="34" selection-end-column="51" />
+            <state relative-caret-position="160">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
           <provider editor-type-id="android-designer2" />
@@ -211,14 +206,14 @@
         <option value="$PROJECT_DIR$/gitservice/src/main/java/br/well/tembici/gitservice/api/GitApiModule.kt" />
         <option value="$PROJECT_DIR$/gitservice/src/main/java/br/well/tembici/gitservice/api/repo/remote/RepoService.kt" />
         <option value="$PROJECT_DIR$/gitservice/src/main/java/br/well/tembici/gitservice/api/model/Repo.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_repository.xml" />
         <option value="$PROJECT_DIR$/app/src/test/java/br/well/tembici/ui/repository/view/controller/RepositoryControllerTest.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/usecase/RepositoryUseCase.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/controller/RepositoryController.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_repository.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/controller/RepositoryViewContract.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_repository_progress.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/listener/PaginationScrolledListener.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_repository.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_repository.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/RepositoryView.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/adapter/RepositoriesAdapter.kt" />
       </list>
@@ -468,7 +463,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="1" />
@@ -481,13 +475,13 @@
       <window_info id="Resources Explorer" order="8" />
       <window_info anchor="bottom" id="Logcat" order="0" weight="0.29555556" />
       <window_info anchor="bottom" id="TODO" order="1" />
-      <window_info anchor="bottom" id="Terminal" order="2" weight="0.3288889" />
-      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="2" visible="true" weight="0.3288889" />
+      <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.50039744" side_tool="true" weight="0.30888888" />
       <window_info anchor="bottom" id="Version Control" order="4" />
-      <window_info anchor="bottom" id="Build" order="5" weight="0.30888888" />
+      <window_info anchor="bottom" id="Build" order="5" sideWeight="0.49960256" weight="0.30888888" />
       <window_info anchor="bottom" id="Android Profiler" order="6" />
       <window_info anchor="bottom" id="Run" order="7" />
-      <window_info active="true" anchor="bottom" id="Debug" order="8" visible="true" />
+      <window_info anchor="bottom" id="Debug" order="8" />
       <window_info anchor="bottom" id="Find" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
@@ -529,22 +523,6 @@
     </layout-to-restore>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/controller/RepositoryController.kt</url>
-          <line>60</line>
-          <properties />
-          <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/RepositoryView.kt</url>
-          <line>59</line>
-          <properties />
-          <option name="timeStamp" value="66" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="app">
         <watch expression="isLoading()" language="kotlin" />
@@ -874,14 +852,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_repository.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="34" column="51" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="34" selection-end-column="51" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/view/ViewRootImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -889,69 +859,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/usecase/RepositoryUseCase.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="25" column="94" selection-start-line="25" selection-start-column="94" selection-end-line="25" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_repository_progress.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/controller/RepositoryController.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/controller/RepositoryViewContract.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="465" column="19" selection-start-line="465" selection-start-column="19" selection-end-line="465" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/listener/PaginationScrolledListener.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#53#157#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_repository.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="31" lean-forward="true" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
-          <folding>
-            <element signature="e#330#5323#0" />
-            <element signature="e#5329#5857#0" />
-            <element signature="e#5863#7326#0" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/RepositoryView.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="59" column="41" lean-forward="true" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -966,10 +877,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/adapter/RepositoriesAdapter.kt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_repository.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="150" column="54" selection-start-line="150" selection-start-column="54" selection-end-line="150" selection-end-column="54" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/controller/RepositoryViewContract.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/usecase/RepositoryUseCase.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/listener/PaginationScrolledListener.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#53#157#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/controller/RepositoryController.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="619">
+          <caret line="61" column="29" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_repository_progress.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_repository.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/RepositoryView.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
-          <caret line="98" column="30" selection-start-line="98" selection-start-column="30" selection-end-line="98" selection-end-column="30" />
+          <caret line="52" column="13" lean-forward="true" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/well/tembici/ui/repository/view/adapter/RepositoriesAdapter.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="88" column="9" lean-forward="true" selection-start-line="88" selection-start-column="9" selection-end-line="88" selection-end-column="9" />
           <folding>
             <element signature="e#52#423#0" expanded="true" />
           </folding>
