@@ -10,11 +10,15 @@ import br.well.tembici.gitservice.api.model.Repository
 import br.well.tembici.ui.repository.view.adapter.RepositoriesAdapter
 import br.well.tembici.ui.repository.view.adapter.model.RepositoryItemAdapter
 import br.well.tembici.ui.repository.view.controller.RepositoryViewContract
+import br.well.tembici.ui.repository.view.listener.PaginationScrolledListener
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_repository.view.*
 
 class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?): ObservableView<RepositoryViewContract.Listener>(inflater, parent, R.layout.fragment_repository),
     RepositoryViewContract, RepositoriesAdapter.Listener {
+
+    var isLoading = false
+    var isLastPage = false
 
     private val repositoryAdapter by lazy {
         RepositoriesAdapter(arrayListOf(), this)
@@ -39,11 +43,29 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?): ObservableVi
             repositoryItemAdapter.add(repository)
         }
 
-        repositoryAdapter.add(repositoryItemAdapter)
+        repositoryAdapter.addAll(repositoryItemAdapter)
         with(rootView.repositoriesView) {
             setHasFixedSize(true)
             adapter = repositoryAdapter
             visibility = VISIBLE
+
+            addOnScrollListener(object : PaginationScrolledListener(layoutManager!!) {
+                override fun isLoading(): Boolean {
+                    return isLoading
+                }
+
+                override fun loadMoreItems() {
+                    isLoading = true
+                    listeners.forEach {
+                        it.loadNextPage()
+                    }
+                }
+
+                override fun isLastPage(): Boolean {
+                    return isLastPage
+                }
+
+            })
         }
     }
 
@@ -55,6 +77,13 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?): ObservableVi
         Snackbar.make(rootView, message, Snackbar.LENGTH_LONG)
     }
 
+    override fun showListLoad() {
+        repositoryAdapter.showLoading()
+    }
+
+    override fun hideListLoad() {
+        repositoryAdapter.hideLoading()
+    }
     override fun onRepositoryClicked() {
 //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

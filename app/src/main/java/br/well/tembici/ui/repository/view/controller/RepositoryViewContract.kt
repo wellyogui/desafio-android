@@ -9,8 +9,10 @@ interface RepositoryViewContract: ObservableViewContract<RepositoryViewContract.
     fun bindRepositories(repositories: Repository)
     fun hideLoading()
     fun showMessageError(message: String)
+    fun showListLoad()
+    fun hideListLoad()
 
     interface Listener: BaseListener {
-
+        fun loadNextPage()
     }
 }

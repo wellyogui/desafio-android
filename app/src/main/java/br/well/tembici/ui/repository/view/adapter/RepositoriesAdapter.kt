@@ -19,13 +19,24 @@ open class RepositoriesAdapter(
 ) :
     RecyclerView.Adapter<RepositoriesAdapter.ViewHolder>() {
 
+    private var isLoadingAdded: Boolean = false
+
     interface Listener {
         fun onRepositoryClicked()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_repository, parent, false)
+        val view = when (viewType) {
+            ViewHolderType.LOADING.typeId -> {
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_repository_progress, parent, false)
+            }
+            ViewHolderType.ITEM.typeId -> {
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_repository, parent, false)
+            }
+            else -> throw IllegalArgumentException("You must pass viewType as LOADING or ITEM")
+        }
         return ViewHolder(view)
     }
 
@@ -37,7 +48,9 @@ open class RepositoriesAdapter(
             }
         }
 
-        holder.bind(items[position])
+        if (getItemViewType(position) == ViewHolderType.ITEM.typeId) {
+            holder.bind(items[position])
+        }
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -55,11 +68,24 @@ open class RepositoriesAdapter(
         }
     }
 
+    inner class LoadingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind() {
+
+        }
+    }
+
     override fun getItemCount(): Int {
         return items.size
     }
 
-    open fun add(items: ArrayList<RepositoryItemAdapter>, firstPage: Boolean = false) {
+    override fun getItemViewType(position: Int): Int {
+        return when (position == items.size - 1 && isLoadingAdded) {
+            true -> ViewHolderType.LOADING.typeId
+            false -> ViewHolderType.ITEM.typeId
+        }
+    }
+
+    open fun addAll(items: ArrayList<RepositoryItemAdapter>, firstPage: Boolean = false) {
         val size = this.items.size
         size + items.size
         with(this.items) {
@@ -67,4 +93,26 @@ open class RepositoriesAdapter(
         }
         notifyDataSetChanged()
     }
+
+    fun add(repository: RepositoryItemAdapter) {
+        items.add(repository)
+        notifyItemInserted(items.size - 1)
+    }
+
+    fun showLoading() {
+        add(RepositoryItemAdapter("fake repo", "", "", "", 0, 0))
+    }
+
+    fun hideLoading() {
+        val position = items.size - 1
+        val result = items[position]
+
+        items.remove(result)
+        notifyItemRemoved(position)
+    }
+}
+
+enum class ViewHolderType(val typeId: Int) {
+    LOADING(0),
+    ITEM(1)
 }

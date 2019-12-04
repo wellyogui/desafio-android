@@ -13,8 +13,8 @@ class RepositoryUseCase(
 
     val repositoryLiveData = MutableLiveData<Resource<Repository>>()
 
-    fun fetchRepositories() {
-        repoDataSource.repositories(1)
+    fun fetchRepositories(page: Int) {
+        repoDataSource.repositories(page)
             .subscribeOn(schedulerProvider.io())
             .observeOn(schedulerProvider.ui())
             .doOnSubscribe { repositoryLiveData.value = Resource.loading(true) }
@@ -23,7 +23,7 @@ class RepositoryUseCase(
                 repositoryLiveData.value = Resource.success(it)
             }, {
                 repositoryLiveData.value = Resource.loading(false)
-                repositoryLiveData.value = Resource.error(it.message) { fetchRepositories() }
+                repositoryLiveData.value = Resource.error(it.message) { fetchRepositories(page) }
             })
     }
 }

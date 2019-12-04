@@ -11,6 +11,8 @@ import br.well.tembici.ui.repository.usecase.RepositoryUseCase
 class RepositoryController(private val repositoryUseCase: RepositoryUseCase, val lifecycle: Lifecycle) :
     LiveController<RepositoryViewContract.Listener, RepositoryViewContract>(), RepositoryViewContract.Listener {
 
+    var currentPage: Int = 1
+
     override fun onCreate(view: RepositoryViewContract) {
         super.onCreate(view)
         onStart()
@@ -18,7 +20,7 @@ class RepositoryController(private val repositoryUseCase: RepositoryUseCase, val
 
     fun onStart() {
         viewContract.registerListener(this)
-        repositoryUseCase.fetchRepositories()
+        repositoryUseCase.fetchRepositories(currentPage)
     }
 
     override fun onStop() {
@@ -29,9 +31,16 @@ class RepositoryController(private val repositoryUseCase: RepositoryUseCase, val
         repositoryUseCase.repositoryLiveData.observe({lifecycle}, {
             when(it.status) {
                 ResourceState.LOADING -> {
-                    when(it.loading) {
-                        true -> viewContract.showLoading()
-                        false -> viewContract.hideLoading()
+                    if(currentPage == 1){
+                        when(it.loading) {
+                            true -> viewContract.showLoading()
+                            false -> viewContract.hideLoading()
+                        }
+                    } else {
+                        when(it.loading){
+                            true -> viewContract.showListLoad()
+                            false -> viewContract.hideListLoad()
+                        }
                     }
                 }
                 ResourceState.SUCCESS -> {
@@ -48,6 +57,8 @@ class RepositoryController(private val repositoryUseCase: RepositoryUseCase, val
         observeLive()
     }
 
-
-
+    override fun loadNextPage() {
+        currentPage += 1
+        repositoryUseCase.fetchRepositories(currentPage)
+    }
 }

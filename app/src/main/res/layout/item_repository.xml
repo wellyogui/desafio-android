@@ -68,7 +68,7 @@
                 android:id="@+id/starImageView"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_pr_black"
+                android:src="@drawable/ic_star"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/starCountView"
                 app:layout_constraintStart_toStartOf="parent"
@@ -166,7 +166,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="10dp"
+        android:paddingTop="10dp"
         android:background="@color/colorPrimary"
         app:layout_constraintVertical_bias="1"/>
 
