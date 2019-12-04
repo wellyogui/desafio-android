@@ -17,7 +17,7 @@ open class RepositoriesAdapter(
     private val items: ArrayList<RepositoryItemAdapter>,
     private val listener: Listener
 ) :
-    RecyclerView.Adapter<RepositoriesAdapter.ViewHolder>() {
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var isLoadingAdded: Boolean = false
 
@@ -25,35 +25,40 @@ open class RepositoriesAdapter(
         fun onRepositoryClicked()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = when (viewType) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
             ViewHolderType.LOADING.typeId -> {
-                LayoutInflater.from(parent.context)
+                val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_repository_progress, parent, false)
+                LoadingViewHolder(view)
             }
             ViewHolderType.ITEM.typeId -> {
-                LayoutInflater.from(parent.context)
+                val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_repository, parent, false)
+                RepositoryViewHolder(view)
             }
             else -> throw IllegalArgumentException("You must pass viewType as LOADING or ITEM")
         }
-        return ViewHolder(view)
     }
 
     @CallSuper
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        with(holder.itemView) {
-            rootAdapterView.setOnClickListener {
-                listener.onRepositoryClicked()
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is LoadingViewHolder -> {
+                holder.bind()
             }
-        }
-
-        if (getItemViewType(position) == ViewHolderType.ITEM.typeId) {
-            holder.bind(items[position])
+            is RepositoryViewHolder -> {
+                with(holder.itemView) {
+                    rootAdapterView.setOnClickListener {
+                        listener.onRepositoryClicked()
+                    }
+                }
+                holder.bind(items[position])
+            }
         }
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class RepositoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: RepositoryItemAdapter) = with(itemView) {
             repositoryNameView.text = item.repository
             repositoryDescriptionView.text = item.repositoryDescription
@@ -94,21 +99,15 @@ open class RepositoriesAdapter(
         notifyDataSetChanged()
     }
 
-    fun add(repository: RepositoryItemAdapter) {
-        items.add(repository)
-        notifyItemInserted(items.size - 1)
-    }
-
     fun showLoading() {
-        add(RepositoryItemAdapter("fake repo", "", "", "", 0, 0))
+        isLoadingAdded = true
+        notifyDataSetChanged()
     }
 
     fun hideLoading() {
+        isLoadingAdded = false
         val position = items.size - 1
-        val result = items[position]
-
-        items.remove(result)
-        notifyItemRemoved(position)
+        notifyItemChanged(position)
     }
 }
 

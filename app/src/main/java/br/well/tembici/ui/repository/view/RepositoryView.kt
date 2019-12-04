@@ -78,10 +78,12 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?): ObservableVi
     }
 
     override fun showListLoad() {
+        isLoading = true
         repositoryAdapter.showLoading()
     }
 
     override fun hideListLoad() {
+        isLoading = false
         repositoryAdapter.hideLoading()
     }
     override fun onRepositoryClicked() {
