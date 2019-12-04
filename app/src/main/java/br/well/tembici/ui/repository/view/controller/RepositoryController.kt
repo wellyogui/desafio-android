@@ -1,6 +1,7 @@
 package br.well.tembici.ui.repository.view.controller
 
 import androidx.lifecycle.Lifecycle
+import br.well.tembici.common.ScreenNavigator
 import br.well.tembici.common.util.ResourceState
 import br.well.tembici.common.view.LiveController
 import br.well.tembici.ui.repository.usecase.RepositoryUseCase
@@ -8,7 +9,11 @@ import br.well.tembici.ui.repository.usecase.RepositoryUseCase
 /**
  * Created by well_ on 03/12/2019 for tembici-challenge.
  */
-class RepositoryController(private val repositoryUseCase: RepositoryUseCase, val lifecycle: Lifecycle) :
+class RepositoryController(
+    private val repositoryUseCase: RepositoryUseCase,
+    private val lifecycle: Lifecycle,
+    private val screenNavigator: ScreenNavigator
+) :
     LiveController<RepositoryViewContract.Listener, RepositoryViewContract>(), RepositoryViewContract.Listener {
 
     var currentPage: Int = 1
@@ -60,5 +65,9 @@ class RepositoryController(private val repositoryUseCase: RepositoryUseCase, val
     override fun loadNextPage() {
         currentPage += 1
         repositoryUseCase.fetchRepositories(currentPage)
+    }
+
+    override fun toPullRequests(userName: String, repoName: String) {
+        screenNavigator.toPullRequests(userName, repoName)
     }
 }

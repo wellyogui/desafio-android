@@ -9,5 +9,5 @@ import rx.Single
  */
 interface RepoDataSource {
     fun repositories(page: Int): Single<Repository>
-    fun pulls(owner: String, repo: String): Single<PullRequest>
+    fun pulls(owner: String, repo: String): Single<List<PullRequest>>
 }

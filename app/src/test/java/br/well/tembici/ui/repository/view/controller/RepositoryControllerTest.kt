@@ -8,6 +8,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
+import br.well.tembici.common.ScreenNavigator
 import br.well.tembici.common.provider.ImmediateSchedulerProvider
 import br.well.tembici.gitservice.api.repo.RepoDataSource
 import br.well.tembici.ui.repository.usecase.RepositoryUseCase
@@ -26,8 +27,16 @@ class RepositoryControllerTest {
     @JvmField
     val rule = InstantTaskExecutorRule()
 
+    companion object {
+        const val USER_NAME = "wellyogui"
+        const val REPOSITORY_NAME = "desafio-android"
+        const val ERROR_MESSAGE = "Erro ao carregar a lista"
+
+    }
+
     private val repositoryDataSourceMock = mock<RepoDataSource>()
     private val viewContractMock = mock<RepositoryViewContract>()
+    private val screenNavigatorMock = mock<ScreenNavigator>()
 
     lateinit var SUT: RepositoryController
 
@@ -35,10 +44,8 @@ class RepositoryControllerTest {
     fun setup() {
         val lifecycleMock = LifecycleRegistry(Mockito.mock(LifecycleOwner::class.java))
         lifecycleMock.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
-        val useCase = RepositoryUseCase(repositoryDataSourceMock,
-            ImmediateSchedulerProvider()
-        )
-        SUT = RepositoryController(useCase,lifecycleMock)
+        val useCase = RepositoryUseCase(repositoryDataSourceMock, ImmediateSchedulerProvider())
+        SUT = RepositoryController(useCase, lifecycleMock, screenNavigatorMock)
         SUT.onCreate(viewContractMock)
     }
 
@@ -57,13 +64,44 @@ class RepositoryControllerTest {
     @Test
     fun onStart_fetchRepositories_failure() {
         //Arrange
-        val errorMessage = "Erro ao carregar a lista"
-        `when`(repositoryDataSourceMock.repositories(1)).thenReturn(Single.error(RuntimeException(errorMessage)))
+        `when`(repositoryDataSourceMock.repositories(1)).thenReturn(Single.error(RuntimeException(ERROR_MESSAGE)))
         //Act
         SUT.onStart()
         //Assert
         verify(viewContractMock).showLoading()
-        verify(viewContractMock).showMessageError(errorMessage)
+        verify(viewContractMock).showMessageError(ERROR_MESSAGE)
         verify(viewContractMock).hideLoading()
+    }
+
+    @Test
+    fun onScrolled_fetchMoreRepositories_success() {
+        //Arrange
+        `when`(repositoryDataSourceMock.repositories(2)).thenReturn(Single.just(mock()))
+        //Act
+        SUT.loadNextPage()
+        //Assert
+        verify(viewContractMock).showListLoad()
+        verify(viewContractMock).bindRepositories(mock())
+        verify(viewContractMock).hideListLoad()
+    }
+
+    @Test
+    fun onScrolled_fetchMoreRepositories_failure() {
+        //Arrange
+        `when`(repositoryDataSourceMock.repositories(2)).thenReturn(Single.error(java.lang.RuntimeException(ERROR_MESSAGE)))
+        //Act
+        SUT.loadNextPage()
+        //Assert
+        verify(viewContractMock).showListLoad()
+        verify(viewContractMock).showMessageError(ERROR_MESSAGE)
+        verify(viewContractMock).hideListLoad()
+    }
+
+    @Test
+    fun onRepositoryClicked_toPullRequestScreen() {
+        //Act
+        SUT.toPullRequests(USER_NAME, REPOSITORY_NAME)
+        //Assert
+        verify(screenNavigatorMock).toPullRequests(USER_NAME, REPOSITORY_NAME)
     }
 }

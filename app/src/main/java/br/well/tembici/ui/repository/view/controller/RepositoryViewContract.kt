@@ -14,5 +14,6 @@ interface RepositoryViewContract: ObservableViewContract<RepositoryViewContract.
 
     interface Listener: BaseListener {
         fun loadNextPage()
+        fun toPullRequests(userName: String, repoName: String)
     }
 }

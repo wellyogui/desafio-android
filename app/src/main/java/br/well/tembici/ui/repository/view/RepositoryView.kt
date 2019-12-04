@@ -91,8 +91,10 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?) :
         repositoryAdapter.hideLoading()
     }
 
-    override fun onRepositoryClicked() {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onRepositoryClicked(userName: String, repoName: String) {
+        listeners.forEach {
+            it.toPullRequests(userName, repoName)
+        }
     }
 
 }

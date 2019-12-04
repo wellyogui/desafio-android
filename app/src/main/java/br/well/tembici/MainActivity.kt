@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity(), FragmentLayoutProvider {
         GitApiModule.buildRetrofit()
     }
 
-    fun openFragment() {
+    private fun openFragment() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.mainRootView, RepositoryFragment.newInstance())
             .commitNow()

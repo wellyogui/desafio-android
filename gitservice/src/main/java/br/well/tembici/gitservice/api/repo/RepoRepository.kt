@@ -32,7 +32,7 @@ class RepoRepository(private val repoDataSource: RepoDataSource) : RepoDataSourc
         }
     }
 
-    override fun pulls(owner: String, repo: String): Single<PullRequest> {
+    override fun pulls(owner: String, repo: String): Single<List<PullRequest>> {
         return repoDataSource.pulls(owner, repo).doOnError {
             Timber.e(it, "pulls: ${it.message}")
         }

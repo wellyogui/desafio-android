@@ -22,7 +22,7 @@ open class RepositoriesAdapter(
     private var isLoadingAdded: Boolean = false
 
     interface Listener {
-        fun onRepositoryClicked()
+        fun onRepositoryClicked(userName: String, repoName: String)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -50,7 +50,7 @@ open class RepositoriesAdapter(
             is RepositoryViewHolder -> {
                 with(holder.itemView) {
                     rootAdapterView.setOnClickListener {
-                        listener.onRepositoryClicked()
+                        listener.onRepositoryClicked(items[position].userNickname, items[position].repository)
                     }
                 }
                 holder.bind(items[position])
