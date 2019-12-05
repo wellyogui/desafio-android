@@ -20,11 +20,10 @@ class RepositoryController(
 
     override fun onCreate(view: RepositoryViewContract) {
         super.onCreate(view)
-        onStart()
+        viewContract.registerListener(this)
     }
 
     fun onStart() {
-        viewContract.registerListener(this)
         repositoryUseCase.fetchRepositories(currentPage)
     }
 

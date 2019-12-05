@@ -6,7 +6,7 @@ import br.well.tembici.R
 import br.well.tembici.common.ext.gone
 import br.well.tembici.common.ext.visible
 import br.well.tembici.common.view.ObservableView
-import br.well.tembici.gitservice.api.model.Repository
+import br.well.tembici.gitservice.api.model.Project
 import br.well.tembici.ui.repository.view.adapter.RepositoriesAdapter
 import br.well.tembici.ui.repository.view.adapter.model.RepositoryItemAdapter
 import br.well.tembici.ui.repository.view.controller.RepositoryViewContract
@@ -29,7 +29,7 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?) :
         rootView.loadingView.visible()
     }
 
-    override fun bindRepositories(repositories: Repository) {
+    override fun bindRepositories(repositories: Project) {
         val repositoryItemsAdapter = arrayListOf<RepositoryItemAdapter>()
 
         repositories.items.forEach {
@@ -38,8 +38,8 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?) :
                 it.owner.avatarUrl,
                 it.name,
                 it.description,
-                it.forks_count,
-                it.stargazers_count
+                it.forksCount,
+                it.starsCount
             )
 
             repositoryItemsAdapter.add(repository)

@@ -45,4 +45,9 @@ class RepositoryFragment :
         super.onResume()
         controller.onResume()
     }
+
+    override fun onStart() {
+        super.onStart()
+        controller.onStart()
+    }
 }

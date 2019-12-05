@@ -11,15 +11,12 @@ class PullRequestController(
     private val lifecycle: Lifecycle,
     private val userName: String,
     private val repoName: String,
-    val screenNavigator: ScreenNavigator
-) :  LiveController<PullRequestViewContract.Listener, PullRequestViewContract>(), PullRequestViewContract.Listener {
+    private val screenNavigator: ScreenNavigator
+) : LiveController<PullRequestViewContract.Listener, PullRequestViewContract>(),
+    PullRequestViewContract.Listener {
 
     override fun onCreate(view: PullRequestViewContract) {
         super.onCreate(view)
-        onStart()
-    }
-
-    fun onStart() {
         viewContract.registerListener(this)
         useCase.fetchPullRequest(userName, repoName)
     }
@@ -29,14 +26,19 @@ class PullRequestController(
     }
 
     override fun observeLive() {
-        useCase.pullRequestLiveData.observe({lifecycle}, {
-            when(it.status){
-                ResourceState.LOADING -> {when(it.loading) {
-                    true -> viewContract.showLoading()
-                    false -> viewContract.hideLoading()
-                }}
+        useCase.pullRequestLiveData.observe({ lifecycle }, {
+            when (it.status) {
+                ResourceState.LOADING -> {
+                    when (it.loading) {
+                        true -> viewContract.showLoading()
+                        false -> viewContract.hideLoading()
+                    }
+                }
                 ResourceState.SUCCESS -> {
-                    viewContract.bindPullRequests(it.data!!)
+                    when (it.data.isNullOrEmpty()) {
+                        true -> viewContract.showNoPullRequestMessage()
+                        false -> viewContract.bindPullRequests(it.data)
+                    }
                 }
                 ResourceState.ERROR -> {
                     viewContract.showMessageError(it.message)

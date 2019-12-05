@@ -3,7 +3,7 @@ package br.well.tembici.ui.repository.usecase
 import androidx.lifecycle.MutableLiveData
 import br.well.tembici.common.provider.BaseSchedulerProvider
 import br.well.tembici.common.util.Resource
-import br.well.tembici.gitservice.api.model.Repository
+import br.well.tembici.gitservice.api.model.Project
 import br.well.tembici.gitservice.api.repo.ProjectDataSource
 
 class RepositoryUseCase(
@@ -11,7 +11,7 @@ class RepositoryUseCase(
     private val schedulerProvider: BaseSchedulerProvider
 ) {
 
-    val repositoryLiveData = MutableLiveData<Resource<Repository>>()
+    val repositoryLiveData = MutableLiveData<Resource<Project>>()
 
     fun fetchRepositories(page: Int) {
         projectDataSource.repositories(page)

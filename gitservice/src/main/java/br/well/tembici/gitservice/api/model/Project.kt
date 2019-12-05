@@ -9,5 +9,5 @@ import kotlinx.android.parcel.Parcelize
  */
 
 @Parcelize
-data class Repository(@SerializedName("total_count") val totalCount: Int, val items: List<Repo>) :
+data class Project(@SerializedName("total_count") val totalCount: Int, val items: List<Repo>) :
     Parcelable

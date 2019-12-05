@@ -63,6 +63,13 @@ class PullRequestView(inflater: LayoutInflater, parent: ViewGroup?) :
 
     }
 
+    override fun showNoPullRequestMessage() {
+        with(rootView){
+            messageViewGroup.visible()
+            pullRequestsView.gone()
+        }
+    }
+
     override fun onPullRequestListener(url: String) {
         listeners.forEach {
             it.toPullRequestDetails(url)

@@ -1,7 +1,7 @@
 package br.well.tembici.gitservice.api.repo
 
 import br.well.tembici.gitservice.api.model.PullRequest
-import br.well.tembici.gitservice.api.model.Repository
+import br.well.tembici.gitservice.api.model.Project
 import rx.Single
 import timber.log.Timber
 
@@ -26,7 +26,7 @@ class ProjectRepository(private val projectDataSource: ProjectDataSource) : Proj
         }
     }
 
-    override fun repositories(page: Int): Single<Repository> {
+    override fun repositories(page: Int): Single<Project> {
         return projectDataSource.repositories(page).doOnError {
             Timber.e(it, "repositories: ${it.message}")
         }

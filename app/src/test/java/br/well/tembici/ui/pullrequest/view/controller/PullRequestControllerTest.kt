@@ -4,7 +4,10 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
+import br.well.tembici.common.ScreenNavigator
 import br.well.tembici.common.provider.ImmediateSchedulerProvider
+import br.well.tembici.gitservice.api.model.PullRequest
+import br.well.tembici.gitservice.api.model.User
 import br.well.tembici.gitservice.api.repo.ProjectDataSource
 import br.well.tembici.ui.pullrequest.usecase.PullRequestUseCase
 import com.nhaarman.mockitokotlin2.mock
@@ -30,6 +33,9 @@ class PullRequestControllerTest {
 
     private val repoDataSourceMock = mock<ProjectDataSource>()
     private val viewContractMock = mock<PullRequestViewContract>()
+    private val screenNavigatorMock = mock<ScreenNavigator>()
+
+    val pullRequestMock = PullRequest("", "", 0, 1, "", "", User("", ""))
     lateinit var SUT: PullRequestController
 
     @Before
@@ -37,31 +43,50 @@ class PullRequestControllerTest {
         val lifecycleMock = LifecycleRegistry(Mockito.mock(LifecycleOwner::class.java))
         lifecycleMock.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
         val useCase = PullRequestUseCase(repoDataSourceMock, ImmediateSchedulerProvider())
-        SUT = PullRequestController(useCase, lifecycleMock, USER_NAME, REPOSITORY_NAME,)
-        SUT.onCreate(viewContractMock)
+        SUT = PullRequestController(useCase, lifecycleMock, USER_NAME, REPOSITORY_NAME, screenNavigatorMock)
     }
 
     @Test
     fun onStart_fetchPullRequests_success() {
         //Arrange
-        `when`(repoDataSourceMock.pulls(USER_NAME, REPOSITORY_NAME)).thenReturn(Single.just(mock()))
+        `when`(repoDataSourceMock.pulls(USER_NAME, REPOSITORY_NAME)).thenReturn(Single.just(arrayListOf(pullRequestMock)))
         //Act
-        SUT.onStart()
+        SUT.onCreate(viewContractMock)
         //Assert
         verify(viewContractMock).showLoading()
-        verify(viewContractMock).bindPullRequests(mock())
+        verify(viewContractMock).bindPullRequests(arrayListOf(pullRequestMock))
         verify(viewContractMock).hideLoading()
     }
 
     @Test
     fun onStart_fetchPullRequests_failure() {
         //Arrange
-        `when`(repoDataSourceMock.pulls(USER_NAME, REPOSITORY_NAME)).thenReturn(Single.just(mock()))
+        `when`(repoDataSourceMock.pulls(USER_NAME, REPOSITORY_NAME)).thenReturn(Single.error(RuntimeException(ERROR_MESSAGE)))
         //Act
-        SUT.onStart()
+        SUT.onCreate(viewContractMock)
         //Assert
         verify(viewContractMock).showLoading()
         verify(viewContractMock).showMessageError(ERROR_MESSAGE)
         verify(viewContractMock).hideLoading()
+    }
+
+    @Test
+    fun onStart_fetchPullRequests_emptyPullRequest_success() {
+        //Arrange
+        `when`(repoDataSourceMock.pulls(USER_NAME, REPOSITORY_NAME)).thenReturn(Single.just(null))
+        //Act
+        SUT.onCreate(viewContractMock)
+        //Assert
+        verify(viewContractMock).showLoading()
+        verify(viewContractMock).showNoPullRequestMessage()
+        verify(viewContractMock).hideLoading()
+    }
+
+    @Test
+    fun onPullRequestClicked_openPullRequestDetail() {
+        //Act
+        SUT.toPullRequestDetails("")
+        //Assert
+        verify(screenNavigatorMock).toPullRequestDetails("")
     }
 }

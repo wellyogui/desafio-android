@@ -14,4 +14,5 @@ interface PullRequestViewContract : ObservableViewContract<PullRequestViewContra
     fun bindPullRequests(pullRequests: List<PullRequest>)
     fun hideLoading()
     fun showMessageError(message: String?)
+    fun showNoPullRequestMessage()
 }

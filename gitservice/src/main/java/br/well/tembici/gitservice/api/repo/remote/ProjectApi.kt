@@ -2,7 +2,7 @@ package br.well.tembici.gitservice.api.repo.remote
 
 import br.well.tembici.gitservice.api.GitApiModule
 import br.well.tembici.gitservice.api.model.PullRequest
-import br.well.tembici.gitservice.api.model.Repository
+import br.well.tembici.gitservice.api.model.Project
 import br.well.tembici.gitservice.api.repo.ProjectDataSource
 import rx.Single
 import timber.log.Timber
@@ -16,7 +16,7 @@ object ProjectApi : ProjectDataSource {
         GitApiModule.retrofit.create(ProjectService::class.java)
     }
 
-    override fun repositories(page: Int): Single<Repository> {
+    override fun repositories(page: Int): Single<Project> {
         val language = "Java"
         val sort = "stars"
         return repoService.repositories(language, sort, page).doOnError {

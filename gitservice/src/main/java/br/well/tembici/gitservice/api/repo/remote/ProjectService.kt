@@ -1,7 +1,7 @@
 package br.well.tembici.gitservice.api.repo.remote
 
 import br.well.tembici.gitservice.api.model.PullRequest
-import br.well.tembici.gitservice.api.model.Repository
+import br.well.tembici.gitservice.api.model.Project
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -16,5 +16,5 @@ interface ProjectService {
     fun pulls(@Path("owner") owner: String, @Path("repo") repo: String): Single<List<PullRequest>>
 
     @GET("search/repositories")
-    fun repositories(@Query("q") language: String, @Query("sort") sort:String, @Query("page") page: Int): Single<Repository>
+    fun repositories(@Query("q") language: String, @Query("sort") sort:String, @Query("page") page: Int): Single<Project>
 }
