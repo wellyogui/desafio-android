@@ -13,7 +13,15 @@ import kotlinx.android.synthetic.main.item_pull_request.view.*
 /**
  * Created by well_ on 05/12/2019 for tembici-challenge.
  */
-class PullRequestsAdapter(val items: ArrayList<PullRequestItemAdapter>): RecyclerView.Adapter<PullRequestsAdapter.ViewHolder>(){
+class PullRequestsAdapter(
+    val items: ArrayList<PullRequestItemAdapter>,
+    val listener: Listener
+) :
+    RecyclerView.Adapter<PullRequestsAdapter.ViewHolder>() {
+
+    interface Listener {
+        fun onPullRequestListener(url: String)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -23,6 +31,9 @@ class PullRequestsAdapter(val items: ArrayList<PullRequestItemAdapter>): Recycle
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.itemView.pullRequestCardView.setOnClickListener {
+            listener.onPullRequestListener(items[position].pullRequestUrl)
+        }
         holder.bind(items[position])
     }
 
@@ -39,7 +50,7 @@ class PullRequestsAdapter(val items: ArrayList<PullRequestItemAdapter>): Recycle
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: PullRequestItemAdapter) {
             with(itemView) {
                 userNickNameView.text = item.userName

@@ -18,10 +18,10 @@ import kotlinx.android.synthetic.main.fragment_repository.view.loadingView
  */
 class PullRequestView(inflater: LayoutInflater, parent: ViewGroup?) :
         ObservableView<PullRequestViewContract.Listener>(inflater, parent, R.layout.fragment_pull_request),
-        PullRequestViewContract {
+        PullRequestViewContract, PullRequestsAdapter.Listener {
 
     private val pullRequestAdapter: PullRequestsAdapter by lazy {
-        PullRequestsAdapter(arrayListOf())
+        PullRequestsAdapter(arrayListOf(), this)
     }
 
     override fun showLoading() {
@@ -61,6 +61,12 @@ class PullRequestView(inflater: LayoutInflater, parent: ViewGroup?) :
 
     override fun showMessageError(message: String?) {
 
+    }
+
+    override fun onPullRequestListener(url: String) {
+        listeners.forEach {
+            it.toPullRequestDetails(url)
+        }
     }
 
 }

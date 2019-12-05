@@ -14,4 +14,6 @@ abstract class BaseController<VIEW_CONTRACT : RootViewContract> {
     open fun onCreate(view: VIEW_CONTRACT) {
         this.viewContract = view
     }
+
+    abstract fun onResume()
 }

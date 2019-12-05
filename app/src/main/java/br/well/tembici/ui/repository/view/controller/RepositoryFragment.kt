@@ -40,4 +40,9 @@ class RepositoryFragment :
         super.onStop()
         controller.onStop()
     }
+
+    override fun onResume() {
+        super.onResume()
+        controller.onResume()
+    }
 }

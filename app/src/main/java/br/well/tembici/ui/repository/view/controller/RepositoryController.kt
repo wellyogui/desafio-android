@@ -28,6 +28,10 @@ class RepositoryController(
         repositoryUseCase.fetchRepositories(currentPage)
     }
 
+    override fun onResume() {
+        viewContract.registerListener(this)
+    }
+
     override fun onStop() {
         viewContract.unregisterListener(this)
     }

@@ -37,7 +37,7 @@ class PullRequestControllerTest {
         val lifecycleMock = LifecycleRegistry(Mockito.mock(LifecycleOwner::class.java))
         lifecycleMock.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
         val useCase = PullRequestUseCase(repoDataSourceMock, ImmediateSchedulerProvider())
-        SUT = PullRequestController(useCase, lifecycleMock, USER_NAME, REPOSITORY_NAME)
+        SUT = PullRequestController(useCase, lifecycleMock, USER_NAME, REPOSITORY_NAME,)
         SUT.onCreate(viewContractMock)
     }
 

@@ -1,6 +1,7 @@
 package br.well.tembici.ui.pullrequest.view.controller
 
 import androidx.lifecycle.Lifecycle
+import br.well.tembici.common.ScreenNavigator
 import br.well.tembici.common.util.ResourceState
 import br.well.tembici.common.view.LiveController
 import br.well.tembici.ui.pullrequest.usecase.PullRequestUseCase
@@ -9,7 +10,8 @@ class PullRequestController(
     private val useCase: PullRequestUseCase,
     private val lifecycle: Lifecycle,
     private val userName: String,
-    private val repoName: String
+    private val repoName: String,
+    val screenNavigator: ScreenNavigator
 ) :  LiveController<PullRequestViewContract.Listener, PullRequestViewContract>(), PullRequestViewContract.Listener {
 
     override fun onCreate(view: PullRequestViewContract) {
@@ -20,6 +22,10 @@ class PullRequestController(
     fun onStart() {
         viewContract.registerListener(this)
         useCase.fetchPullRequest(userName, repoName)
+    }
+
+    override fun onResume() {
+        viewContract.registerListener(this)
     }
 
     override fun observeLive() {
@@ -47,4 +53,7 @@ class PullRequestController(
         viewContract.unregisterListener(this)
     }
 
+    override fun toPullRequestDetails(url: String) {
+        screenNavigator.toPullRequestDetails(url)
+    }
 }
