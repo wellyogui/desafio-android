@@ -10,6 +10,7 @@ import br.well.tembici.gitservice.api.model.PullRequest
 import br.well.tembici.gitservice.api.model.User
 import br.well.tembici.gitservice.api.repo.ProjectDataSource
 import br.well.tembici.ui.pullrequest.usecase.PullRequestUseCase
+import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Before
@@ -61,12 +62,13 @@ class PullRequestControllerTest {
     @Test
     fun onStart_fetchPullRequests_failure() {
         //Arrange
+        val captor = argumentCaptor<() -> Unit>()
         `when`(repoDataSourceMock.pulls(USER_NAME, REPOSITORY_NAME)).thenReturn(Single.error(RuntimeException(ERROR_MESSAGE)))
         //Act
         SUT.onCreate(viewContractMock)
         //Assert
         verify(viewContractMock).showLoading()
-        verify(viewContractMock).showMessageError(ERROR_MESSAGE,)
+        verify(viewContractMock).showMessageError(ERROR_MESSAGE, captor.capture())
         verify(viewContractMock).hideLoading()
     }
 

@@ -15,6 +15,7 @@ import br.well.tembici.gitservice.api.model.Project
 import br.well.tembici.gitservice.api.model.Repo
 import br.well.tembici.gitservice.api.repo.ProjectDataSource
 import br.well.tembici.ui.repository.usecase.RepositoryUseCase
+import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.After
@@ -100,6 +101,7 @@ class RepositoryControllerTest {
     @Test
     fun onScrolled_fetchMoreRepositories_failure() {
         //Arrange
+        val captor = argumentCaptor<() -> Unit>()
         `when`(repositoryDataSourceMock.repositories(2)).thenReturn(
             Single.error(
                 java.lang.RuntimeException(
@@ -111,7 +113,7 @@ class RepositoryControllerTest {
         SUT.loadNextPage()
         //Assert
         verify(viewContractMock).showListLoad()
-        verify(viewContractMock).showMessageError(ERROR_MESSAGE,)
+        verify(viewContractMock).showMessageError(ERROR_MESSAGE, captor.capture())
         verify(viewContractMock).hideListLoad()
     }
 
