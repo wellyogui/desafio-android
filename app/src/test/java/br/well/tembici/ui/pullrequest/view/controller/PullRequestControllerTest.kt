@@ -5,9 +5,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import br.well.tembici.common.provider.ImmediateSchedulerProvider
-import br.well.tembici.gitservice.api.repo.RepoDataSource
-import br.well.tembici.ui.pullrequest.controller.PullRequestController
-import br.well.tembici.ui.pullrequest.controller.PullRequestViewContract
+import br.well.tembici.gitservice.api.repo.ProjectDataSource
 import br.well.tembici.ui.pullrequest.usecase.PullRequestUseCase
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -30,7 +28,7 @@ class PullRequestControllerTest {
         const val ERROR_MESSAGE = "Erro ao carregar a lista"
     }
 
-    private val repoDataSourceMock = mock<RepoDataSource>()
+    private val repoDataSourceMock = mock<ProjectDataSource>()
     private val viewContractMock = mock<PullRequestViewContract>()
     lateinit var SUT: PullRequestController
 
@@ -39,7 +37,7 @@ class PullRequestControllerTest {
         val lifecycleMock = LifecycleRegistry(Mockito.mock(LifecycleOwner::class.java))
         lifecycleMock.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
         val useCase = PullRequestUseCase(repoDataSourceMock, ImmediateSchedulerProvider())
-        SUT = PullRequestController(useCase, lifecycleMock, REPOSITORY_NAME, USER_NAME)
+        SUT = PullRequestController(useCase, lifecycleMock, USER_NAME, REPOSITORY_NAME)
         SUT.onCreate(viewContractMock)
     }
 

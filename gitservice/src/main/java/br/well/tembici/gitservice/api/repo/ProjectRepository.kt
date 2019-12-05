@@ -8,15 +8,15 @@ import timber.log.Timber
 /**
  * Created by well_ on 03/12/2019 for tembici-challenge.
  */
-class RepoRepository(private val repoDataSource: RepoDataSource) : RepoDataSource {
+class ProjectRepository(private val projectDataSource: ProjectDataSource) : ProjectDataSource {
 
     companion object {
-        private var INSTANCE: RepoRepository? = null
+        private var INSTANCE: ProjectRepository? = null
 
         @JvmStatic
-        fun getInstance(remoteDataSource: RepoDataSource) = INSTANCE
-            ?: synchronized(RepoRepository::class.java) {
-                INSTANCE ?: RepoRepository(remoteDataSource)
+        fun getInstance(remoteDataSource: ProjectDataSource) = INSTANCE
+            ?: synchronized(ProjectRepository::class.java) {
+                INSTANCE ?: ProjectRepository(remoteDataSource)
                     .also { INSTANCE = it }
             }
 
@@ -27,13 +27,13 @@ class RepoRepository(private val repoDataSource: RepoDataSource) : RepoDataSourc
     }
 
     override fun repositories(page: Int): Single<Repository> {
-        return repoDataSource.repositories(page).doOnError {
+        return projectDataSource.repositories(page).doOnError {
             Timber.e(it, "repositories: ${it.message}")
         }
     }
 
     override fun pulls(owner: String, repo: String): Single<List<PullRequest>> {
-        return repoDataSource.pulls(owner, repo).doOnError {
+        return projectDataSource.pulls(owner, repo).doOnError {
             Timber.e(it, "pulls: ${it.message}")
         }
     }

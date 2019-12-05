@@ -1,4 +1,4 @@
-package br.well.tembici.ui.pullrequest.controller
+package br.well.tembici.ui.pullrequest.view.controller
 
 import br.well.tembici.common.view.ObservableViewContract
 import br.well.tembici.common.view.base.BaseListener

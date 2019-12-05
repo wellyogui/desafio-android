@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.recyclerview.widget.RecyclerView
 import br.well.tembici.R
+import br.well.tembici.common.ext.loadImage
 import br.well.tembici.ui.repository.view.adapter.model.RepositoryItemAdapter
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_repository.view.*
 
 /**
@@ -58,26 +58,6 @@ open class RepositoriesAdapter(
         }
     }
 
-    inner class RepositoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: RepositoryItemAdapter) = with(itemView) {
-            repositoryNameView.text = item.repository
-            repositoryDescriptionView.text = item.repositoryDescription
-            starCountView.text = item.starCount.toString()
-            forkCountView.text = item.forkCount.toString()
-            userNickNameView.text = item.userNickname
-
-            Glide.with(context)
-                .load(item.userImage)
-                .into(userImageView)
-        }
-    }
-
-    inner class LoadingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind() {
-
-        }
-    }
-
     override fun getItemCount(): Int {
         return items.size
     }
@@ -89,11 +69,11 @@ open class RepositoriesAdapter(
         }
     }
 
-    open fun addAll(items: ArrayList<RepositoryItemAdapter>, firstPage: Boolean = false) {
+    open fun addAll(repositoriesItemAdapter: ArrayList<RepositoryItemAdapter>) {
         val size = this.items.size
-        size + items.size
+        size + repositoriesItemAdapter.size
         with(this.items) {
-            addAll(items)
+            addAll(repositoriesItemAdapter)
         }
         notifyDataSetChanged()
     }
@@ -108,6 +88,26 @@ open class RepositoriesAdapter(
         val position = items.size - 1
         notifyItemChanged(position)
     }
+
+    inner class RepositoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(item: RepositoryItemAdapter) {
+            with(itemView) {
+                repositoryNameView.text = item.repository
+                repositoryDescriptionView.text = item.repositoryDescription
+                starCountView.text = item.starCount.toString()
+                forkCountView.text = item.forkCount.toString()
+                userNickNameView.text = item.userNickname
+                userImageView.loadImage(item.userImage)
+            }
+        }
+    }
+
+    inner class LoadingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind() {
+
+        }
+    }
+
 }
 
 enum class ViewHolderType(val typeId: Int) {

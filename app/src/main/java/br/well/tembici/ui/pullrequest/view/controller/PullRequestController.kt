@@ -1,11 +1,16 @@
-package br.well.tembici.ui.pullrequest.controller
+package br.well.tembici.ui.pullrequest.view.controller
 
 import androidx.lifecycle.Lifecycle
 import br.well.tembici.common.util.ResourceState
 import br.well.tembici.common.view.LiveController
 import br.well.tembici.ui.pullrequest.usecase.PullRequestUseCase
 
-class PullRequestController(private val useCase: PullRequestUseCase, private val lifecycle: Lifecycle, private val repoName: String, private val userName: String) :  LiveController<PullRequestViewContract.Listener, PullRequestViewContract>(), PullRequestViewContract.Listener {
+class PullRequestController(
+    private val useCase: PullRequestUseCase,
+    private val lifecycle: Lifecycle,
+    private val userName: String,
+    private val repoName: String
+) :  LiveController<PullRequestViewContract.Listener, PullRequestViewContract>(), PullRequestViewContract.Listener {
 
     override fun onCreate(view: PullRequestViewContract) {
         super.onCreate(view)

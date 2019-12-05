@@ -2,6 +2,7 @@ package br.well.tembici.common.factory
 
 import androidx.lifecycle.LifecycleOwner
 import br.well.tembici.common.provider.AppProvider
+import br.well.tembici.ui.pullrequest.view.controller.PullRequestController
 import br.well.tembici.ui.repository.view.controller.RepositoryController
 
 class ControllerFactory(private val useCaseFactory: UseCaseFactory,
@@ -12,7 +13,10 @@ class ControllerFactory(private val useCaseFactory: UseCaseFactory,
         lifecycleOwner.lifecycle, appProvider.screenNavigator
     )
 
-    fun providePullRequestController(userName: String, repoName: String): RepositoryController {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    fun providePullRequestController(userName: String, repoName: String) = PullRequestController(
+        useCaseFactory.providePullRequestUseCase(),
+        lifecycleOwner.lifecycle,
+        userName,
+        repoName
+    )
 }

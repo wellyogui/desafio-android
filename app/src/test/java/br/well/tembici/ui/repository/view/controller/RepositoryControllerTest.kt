@@ -10,7 +10,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import br.well.tembici.common.ScreenNavigator
 import br.well.tembici.common.provider.ImmediateSchedulerProvider
-import br.well.tembici.gitservice.api.repo.RepoDataSource
+import br.well.tembici.gitservice.api.repo.ProjectDataSource
 import br.well.tembici.ui.repository.usecase.RepositoryUseCase
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -34,7 +34,7 @@ class RepositoryControllerTest {
 
     }
 
-    private val repositoryDataSourceMock = mock<RepoDataSource>()
+    private val repositoryDataSourceMock = mock<ProjectDataSource>()
     private val viewContractMock = mock<RepositoryViewContract>()
     private val screenNavigatorMock = mock<ScreenNavigator>()
 

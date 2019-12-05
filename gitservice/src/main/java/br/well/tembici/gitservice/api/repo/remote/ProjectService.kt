@@ -10,7 +10,7 @@ import rx.Single
 /**
  * Created by well_ on 03/12/2019 for tembici-challenge.
  */
-interface RepoService {
+interface ProjectService {
 
     @GET("repos/{owner}/{repo}/pulls")
     fun pulls(@Path("owenr") owner: String, @Path("repo") repo: String): Single<List<PullRequest>>

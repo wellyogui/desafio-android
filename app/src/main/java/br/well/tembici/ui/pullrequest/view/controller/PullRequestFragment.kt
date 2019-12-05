@@ -1,4 +1,4 @@
-package br.well.tembici.ui.pullrequest
+package br.well.tembici.ui.pullrequest.view.controller
 
 import android.os.Bundle
 import android.view.ViewGroup
@@ -7,11 +7,9 @@ import br.well.tembici.common.factory.ControllerFactory
 import br.well.tembici.common.provider.AppProvider
 import br.well.tembici.common.provider.FragmentLayoutProvider
 import br.well.tembici.common.view.base.BaseFragment
-import br.well.tembici.ui.repository.view.controller.RepositoryController
-import br.well.tembici.ui.repository.view.controller.RepositoryViewContract
 import timber.log.Timber
 
-class PullRequestFragment: BaseFragment<RepositoryViewContract, RepositoryController, AppProvider, ControllerFactory>() {
+class PullRequestFragment: BaseFragment<PullRequestViewContract, PullRequestController, AppProvider, ControllerFactory>() {
 
     lateinit var userName: String
     lateinit var repoName: String
@@ -29,10 +27,10 @@ class PullRequestFragment: BaseFragment<RepositoryViewContract, RepositoryContro
         }
     }
 
-    override val viewContract: RepositoryViewContract by lazy {
-        appProvider.viewFactory.provideRepositoryView(view?.parent as ViewGroup?)
+    override val viewContract: PullRequestViewContract by lazy {
+        appProvider.viewFactory.providePullRequestView(view?.parent as ViewGroup?)
     }
-    override val controller: RepositoryController by lazy {
+    override val controller: PullRequestController by lazy {
         controllerFactory.providePullRequestController(userName, repoName)
     }
     override val appProvider: AppProvider by lazy {

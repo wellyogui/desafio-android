@@ -1,10 +1,10 @@
 package br.well.tembici.ui.repository.view
 
 import android.view.LayoutInflater
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import br.well.tembici.R
+import br.well.tembici.common.ext.gone
+import br.well.tembici.common.ext.visible
 import br.well.tembici.common.view.ObservableView
 import br.well.tembici.gitservice.api.model.Repository
 import br.well.tembici.ui.repository.view.adapter.RepositoriesAdapter
@@ -26,11 +26,11 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?) :
     }
 
     override fun showLoading() {
-        rootView.loadingView.visibility = VISIBLE
+        rootView.loadingView.visible()
     }
 
     override fun bindRepositories(repositories: Repository) {
-        val repositoryItemAdapter = arrayListOf<RepositoryItemAdapter>()
+        val repositoryItemsAdapter = arrayListOf<RepositoryItemAdapter>()
 
         repositories.items.forEach {
             val repository = RepositoryItemAdapter(
@@ -42,16 +42,16 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?) :
                 it.stargazers_count
             )
 
-            repositoryItemAdapter.add(repository)
+            repositoryItemsAdapter.add(repository)
         }
 
-        repositoryAdapter.addAll(repositoryItemAdapter)
+        repositoryAdapter.addAll(repositoryItemsAdapter)
         with(rootView.repositoriesView) {
             setHasFixedSize(true)
             if (adapter == null) {
                 adapter = repositoryAdapter
             }
-            visibility = VISIBLE
+            visible()
 
             addOnScrollListener(object : PaginationScrolledListener(layoutManager!!) {
                 override fun isLoading(): Boolean {
@@ -74,7 +74,7 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?) :
     }
 
     override fun hideLoading() {
-        rootView.loadingView.visibility = GONE
+        rootView.loadingView.gone()
     }
 
     override fun showMessageError(message: String) {
