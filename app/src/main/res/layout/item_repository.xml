@@ -8,11 +8,12 @@
     android:padding="10dp">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/repoCardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:elevation="50dp"
+        android:foreground="?android:attr/selectableItemBackground"
         card_view:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +50,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nome Repositório"
-                        android:textColor="@color/black"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toTopOf="@+id/repositoryDescriptionView"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -174,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:text="username"
-                    android:textColor="@color/black"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

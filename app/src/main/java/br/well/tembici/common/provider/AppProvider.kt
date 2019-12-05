@@ -11,8 +11,7 @@ class AppProvider(override val activity: AppCompatActivity, @IdRes frameId: Int)
     val viewFactory by lazy { ViewFactory(layoutInflater) }
     val screenNavigator by lazy {
         ScreenNavigator(
-            activity,
-            frameId
+            activity
         )
     }
     val useCaseFactory by lazy {

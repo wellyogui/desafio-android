@@ -49,7 +49,7 @@ open class RepositoriesAdapter(
             }
             is RepositoryViewHolder -> {
                 with(holder.itemView) {
-                    rootAdapterView.setOnClickListener {
+                    repoCardView.setOnClickListener {
                         listener.onRepositoryClicked(items[position].userNickname, items[position].repository)
                     }
                 }

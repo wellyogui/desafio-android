@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_repository.view.loadingView
 /**
  * Created by well_ on 04/12/2019 for tembici-challenge.
  */
-class PullResquestView(inflater: LayoutInflater, parent: ViewGroup?) :
+class PullRequestView(inflater: LayoutInflater, parent: ViewGroup?) :
         ObservableView<PullRequestViewContract.Listener>(inflater, parent, R.layout.fragment_pull_request),
         PullRequestViewContract {
 

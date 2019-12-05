@@ -13,7 +13,7 @@ import rx.Single
 interface ProjectService {
 
     @GET("repos/{owner}/{repo}/pulls")
-    fun pulls(@Path("owenr") owner: String, @Path("repo") repo: String): Single<List<PullRequest>>
+    fun pulls(@Path("owner") owner: String, @Path("repo") repo: String): Single<List<PullRequest>>
 
     @GET("search/repositories")
     fun repositories(@Query("q") language: String, @Query("sort") sort:String, @Query("page") page: Int): Single<Repository>

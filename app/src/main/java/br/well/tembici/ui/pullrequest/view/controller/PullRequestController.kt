@@ -40,11 +40,11 @@ class PullRequestController(
     }
 
     override fun initViews() {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        observeLive()
     }
 
     override fun onStop() {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        viewContract.unregisterListener(this)
     }
 
 }
