@@ -8,11 +8,14 @@ interface PullRequestViewContract : ObservableViewContract<PullRequestViewContra
 
     interface Listener : BaseListener {
         fun toPullRequestDetails(url: String)
+        fun onBackPressed()
     }
 
     fun showLoading()
     fun bindPullRequests(pullRequests: List<PullRequest>)
     fun hideLoading()
-    fun showMessageError(message: String?)
+    fun showMessageError(message: String, action: () -> Unit)
     fun showNoPullRequestMessage()
+    fun initToolbar(title: String)
+    fun onBackPressed()
 }

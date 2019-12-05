@@ -66,7 +66,7 @@ class PullRequestControllerTest {
         SUT.onCreate(viewContractMock)
         //Assert
         verify(viewContractMock).showLoading()
-        verify(viewContractMock).showMessageError(ERROR_MESSAGE)
+        verify(viewContractMock).showMessageError(ERROR_MESSAGE,)
         verify(viewContractMock).hideLoading()
     }
 

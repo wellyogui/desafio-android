@@ -18,6 +18,7 @@ class PullRequestController(
     override fun onCreate(view: PullRequestViewContract) {
         super.onCreate(view)
         viewContract.registerListener(this)
+        viewContract.initToolbar(repoName)
         useCase.fetchPullRequest(userName, repoName)
     }
 
@@ -41,7 +42,7 @@ class PullRequestController(
                     }
                 }
                 ResourceState.ERROR -> {
-                    viewContract.showMessageError(it.message)
+                    viewContract.showMessageError(it.message!!, it.callback!!)
                 }
             }
         })
@@ -58,4 +59,9 @@ class PullRequestController(
     override fun toPullRequestDetails(url: String) {
         screenNavigator.toPullRequestDetails(url)
     }
+
+    override fun onBackPressed() {
+        viewContract.onBackPressed()
+    }
+
 }

@@ -6,6 +6,7 @@ import br.well.tembici.common.provider.FragmentLayoutProvider
 import br.well.tembici.gitservice.api.GitApiModule
 import br.well.tembici.ui.repository.view.controller.RepositoryFragment
 
+
 class MainActivity : AppCompatActivity(), FragmentLayoutProvider {
 
     override fun onCreate(savedInstanceState: Bundle?) {

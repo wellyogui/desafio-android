@@ -4,24 +4,46 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import br.well.tembici.R
 import br.well.tembici.common.ext.gone
+import br.well.tembici.common.ext.showSnackBar
 import br.well.tembici.common.ext.visible
 import br.well.tembici.common.view.ObservableView
 import br.well.tembici.gitservice.api.model.PullRequest
 import br.well.tembici.ui.pullrequest.view.adapter.PullRequestsAdapter
 import br.well.tembici.ui.pullrequest.view.adapter.model.PullRequestItemAdapter
 import br.well.tembici.ui.pullrequest.view.controller.PullRequestViewContract
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_pull_request.view.*
 import kotlinx.android.synthetic.main.fragment_repository.view.loadingView
+
 
 /**
  * Created by well_ on 04/12/2019 for tembici-challenge.
  */
 class PullRequestView(inflater: LayoutInflater, parent: ViewGroup?) :
-        ObservableView<PullRequestViewContract.Listener>(inflater, parent, R.layout.fragment_pull_request),
-        PullRequestViewContract, PullRequestsAdapter.Listener {
+    ObservableView<PullRequestViewContract.Listener>(
+        inflater,
+        parent,
+        R.layout.fragment_pull_request
+    ),
+    PullRequestViewContract, PullRequestsAdapter.Listener {
 
     private val pullRequestAdapter: PullRequestsAdapter by lazy {
         PullRequestsAdapter(arrayListOf(), this)
+    }
+
+    override fun initToolbar(title: String) {
+        rootView.toolbar.title = title
+        activity.setActionBar(rootView.toolbar)
+        activity.actionBar!!.setDisplayShowHomeEnabled(true)
+        activity.actionBar!!.setDisplayHomeAsUpEnabled(true)
+        activity.actionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+
+        rootView.toolbar.setNavigationOnClickListener {
+            listeners.forEach {
+                it.onBackPressed()
+            }
+        }
+
     }
 
     override fun showLoading() {
@@ -59,12 +81,12 @@ class PullRequestView(inflater: LayoutInflater, parent: ViewGroup?) :
         rootView.loadingView.gone()
     }
 
-    override fun showMessageError(message: String?) {
-
+    override fun showMessageError(message: String, action: () -> Unit) {
+        rootView.showSnackBar(message, Snackbar.LENGTH_SHORT, "Tentar Novamente") { action.invoke() }
     }
 
     override fun showNoPullRequestMessage() {
-        with(rootView){
+        with(rootView) {
             messageViewGroup.visible()
             pullRequestsView.gone()
         }
@@ -74,6 +96,10 @@ class PullRequestView(inflater: LayoutInflater, parent: ViewGroup?) :
         listeners.forEach {
             it.toPullRequestDetails(url)
         }
+    }
+
+    override fun onBackPressed() {
+        activity.onBackPressed()
     }
 
 }

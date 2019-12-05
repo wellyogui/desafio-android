@@ -33,7 +33,7 @@ abstract class BaseFragment<VIEW_CONTRACT : RootViewContract, CONTROLLER : BaseC
         controller.initViews()
     }
 
-    fun onBackPressed(): Boolean {
+    fun backPressed(): Boolean {
         return if (childFragmentManager.backStackEntryCount > 0) {
             childFragmentManager.popBackStackImmediate()
         } else false

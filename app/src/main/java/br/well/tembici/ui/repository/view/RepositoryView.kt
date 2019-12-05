@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import br.well.tembici.R
 import br.well.tembici.common.ext.gone
+import br.well.tembici.common.ext.showSnackBar
 import br.well.tembici.common.ext.visible
 import br.well.tembici.common.view.ObservableView
 import br.well.tembici.gitservice.api.model.Project
@@ -77,8 +78,8 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?) :
         rootView.loadingView.gone()
     }
 
-    override fun showMessageError(message: String) {
-        Snackbar.make(rootView, message, Snackbar.LENGTH_LONG)
+    override fun showMessageError(message: String, action: () -> Unit) {
+        rootView.showSnackBar(message, Snackbar.LENGTH_SHORT, "Tentar Novamente") { action.invoke() }
     }
 
     override fun showListLoad() {
@@ -96,5 +97,4 @@ class RepositoryView(inflater: LayoutInflater, parent: ViewGroup?) :
             it.toPullRequests(userName, repoName)
         }
     }
-
 }

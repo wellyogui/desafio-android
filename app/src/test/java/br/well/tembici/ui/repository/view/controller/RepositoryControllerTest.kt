@@ -81,7 +81,7 @@ class RepositoryControllerTest {
         SUT.onCreate(viewContractMock)
         //Assert
         verify(viewContractMock).showLoading()
-        verify(viewContractMock).showMessageError(ERROR_MESSAGE)
+        verify(viewContractMock).showMessageError(ERROR_MESSAGE,)
         verify(viewContractMock).hideLoading()
     }
 
@@ -111,7 +111,7 @@ class RepositoryControllerTest {
         SUT.loadNextPage()
         //Assert
         verify(viewContractMock).showListLoad()
-        verify(viewContractMock).showMessageError(ERROR_MESSAGE)
+        verify(viewContractMock).showMessageError(ERROR_MESSAGE,)
         verify(viewContractMock).hideListLoad()
     }
 

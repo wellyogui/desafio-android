@@ -55,7 +55,7 @@ class RepositoryController(
                     viewContract.bindRepositories(it.data!!)
                 }
                 ResourceState.ERROR -> {
-                    viewContract.showMessageError(it.message!!)
+                    viewContract.showMessageError(it.message!!,)
                 }
             }
         })

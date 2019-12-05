@@ -62,4 +62,15 @@ class PullRequestFragment: BaseFragment<PullRequestViewContract, PullRequestCont
             activity?.finish()
         }
     }
+
+
+    override fun onStop() {
+        super.onStop()
+        controller.onStop()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        controller.onResume()
+    }
 }
